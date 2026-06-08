@@ -1,15 +1,25 @@
 .track-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
   gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
 
   &__empty {
-    grid-column: 1 / -1;
-    text-align: center;
-    color: #6c7086;
+    color: #999;
     font-style: italic;
-    padding: 3rem 1rem;
-    border: 1px dashed #313244;
-    border-radius: 12px;
+    padding: 2rem;
   }
 }

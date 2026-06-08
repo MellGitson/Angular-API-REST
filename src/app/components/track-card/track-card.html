@@ -1,17 +1,22 @@
-<div class="track-card" (click)="onSelect()">
+<div
+  class="track-card"
+  [class.track-card--playing]="isPlaying()"
+  (click)="onSelect()"
+>
 
-  <div class="track-card__header">
+  <img
+    class="track-card__cover"
+    [src]="track().coverUrl"
+    [alt]="track().title"
+  />
+
+  <div class="track-card__body">
     <h3 class="track-card__title">{{ track().title }}</h3>
-    <span class="track-card__favorite" [class.active]="track().favorite">♥</span>
-  </div>
+    <p class="track-card__artist">{{ track().artist }}</p>
 
-  <p class="track-card__artist">{{ track().artist }}</p>
-  <p class="track-card__album">{{ track().album }}</p>
-
-  <div class="track-card__footer">
-    <span class="track-card__genre">{{ track().genre }}</span>
-    <span class="track-card__rating">{{ formatRating(track().rating) }}</span>
-    <span class="track-card__duration">{{ formatDuration(track().duration) }}</span>
+    @if (isPlaying()) {
+      <span class="track-card__badge">▶ En lecture</span>
+    }
   </div>
 
 </div>

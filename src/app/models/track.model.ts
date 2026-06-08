@@ -7,4 +7,5 @@ export interface Track {
   duration: number; // secondes
   rating: number;   // 0–5
   favorite: boolean;
+  coverUrl: string;
 }

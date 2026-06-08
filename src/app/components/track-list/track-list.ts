@@ -13,6 +13,9 @@ export class TrackListComponent {
   // F2 – input signal : reçoit le tableau de morceaux
   tracks = input<Track[]>([]);
 
+  // F3 – id du morceau actuellement sélectionné (pour le badge)
+  selectedTrackId = input<number | null>(null);
+
   // F3 – output signal : remonte le morceau cliqué vers le parent
   trackSelected = output<Track>();
 }

@@ -12,29 +12,22 @@ import { TrackListComponent } from './components/track-list/track-list';
 export class App {
   // Données mock – J3 : remplacées par un appel HTTP à music-api
   readonly tracks: Track[] = [
-    { id: 1, title: 'Bohemian Rhapsody',   artist: 'Queen',         album: 'A Night at the Opera', genre: 'Rock',   duration: 354, rating: 5, favorite: true  },
-    { id: 2, title: 'Hotel California',    artist: 'Eagles',        album: 'Hotel California',      genre: 'Rock',   duration: 391, rating: 4, favorite: false },
-    { id: 3, title: 'Stairway to Heaven',  artist: 'Led Zeppelin',  album: 'Led Zeppelin IV',       genre: 'Rock',   duration: 482, rating: 5, favorite: true  },
-    { id: 4, title: 'Superstition',        artist: 'Stevie Wonder', album: 'Talking Book',          genre: 'Soul',   duration: 245, rating: 4, favorite: false },
-    { id: 5, title: "What's Going On",     artist: 'Marvin Gaye',   album: "What's Going On",       genre: 'Soul',   duration: 233, rating: 4, favorite: true  },
-    { id: 6, title: 'Smells Like Teen Spirit', artist: 'Nirvana',   album: 'Nevermind',             genre: 'Grunge', duration: 301, rating: 5, favorite: false },
+    { id: 1, title: 'Blinding Lights',  artist: 'The Weeknd',    album: 'After Hours',            genre: 'Pop',  duration: 200, rating: 5, favorite: true,  coverUrl: 'https://picsum.photos/seed/arch/200/160'        },
+    { id: 2, title: 'As It Was',        artist: 'Harry Styles',  album: "Harry's House",           genre: 'Pop',  duration: 167, rating: 4, favorite: false, coverUrl: 'https://picsum.photos/seed/workspace/200/160'   },
+    { id: 3, title: 'Levitating',       artist: 'Dua Lipa',      album: 'Future Nostalgia',       genre: 'Pop',  duration: 203, rating: 4, favorite: false, coverUrl: 'https://picsum.photos/seed/waterfall/200/160'   },
+    { id: 4, title: 'Bad Guy',          artist: 'Billie Eilish', album: 'When We All Fall Asleep', genre: 'Pop',  duration: 194, rating: 5, favorite: true,  coverUrl: 'https://picsum.photos/seed/strawberry/200/160'  },
+    { id: 5, title: 'Save Your Tears',  artist: 'The Weeknd',    album: 'After Hours',            genre: 'Pop',  duration: 215, rating: 4, favorite: false, coverUrl: 'https://picsum.photos/seed/diver/200/160'       },
+    { id: 6, title: "Don't Start Now", artist: 'Dua Lipa',      album: 'Future Nostalgia',       genre: 'Pop',  duration: 183, rating: 4, favorite: false, coverUrl: 'https://picsum.photos/seed/vintage/200/160'     },
   ];
 
   // F3 – signal qui stocke le morceau sélectionné (null = aucun)
   selectedTrack = signal<Track | null>(null);
 
+  get selectedTrackId(): number | null {
+    return this.selectedTrack()?.id ?? null;
+  }
+
   onTrackSelected(track: Track): void {
     this.selectedTrack.set(track);
-  }
-
-  // Utilitaires d'affichage pour le panneau de détail
-  formatDuration(seconds: number): string {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m}:${s.toString().padStart(2, '0')}`;
-  }
-
-  formatRating(rating: number): string {
-    return '★'.repeat(rating) + '☆'.repeat(5 - rating);
   }
 }

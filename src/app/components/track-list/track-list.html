@@ -4,6 +4,7 @@
   @for (track of tracks(); track track.id) {
     <app-track-card
       [track]="track"
+      [isPlaying]="selectedTrackId() === track.id"
       (selected)="trackSelected.emit($event)"
     />
   } @empty {

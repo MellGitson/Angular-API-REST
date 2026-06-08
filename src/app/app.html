@@ -1,54 +1,13 @@
 <div class="app">
 
   <header class="app__header">
-    <h1>🎵 <span>Music</span>Library</h1>
-    <p>{{ tracks.length }} morceau{{ tracks.length > 1 ? 'x' : '' }} dans votre bibliothèque</p>
+    <h1>CinéTrack</h1>
   </header>
 
-  <main class="app__content">
+  <app-track-list
+    [tracks]="tracks"
+    [selectedTrackId]="selectedTrackId"
+    (trackSelected)="onTrackSelected($event)"
+  />
 
-    <!-- F2 + F3 : liste avec remontée d'événement -->
-    <app-track-list
-      [tracks]="tracks"
-      (trackSelected)="onTrackSelected($event)"
-    />
-
-    <!-- F3 : panneau de détail, visible quand un morceau est sélectionné -->
-    @if (selectedTrack(); as track) {
-      <section class="app__detail">
-        <h2>Morceau sélectionné</h2>
-        <div class="app__detail-grid">
-          <div class="app__detail-item">
-            <label>Titre</label>
-            <span>{{ track.title }}</span>
-          </div>
-          <div class="app__detail-item">
-            <label>Artiste</label>
-            <span>{{ track.artist }}</span>
-          </div>
-          <div class="app__detail-item">
-            <label>Album</label>
-            <span>{{ track.album }}</span>
-          </div>
-          <div class="app__detail-item">
-            <label>Genre</label>
-            <span>{{ track.genre }}</span>
-          </div>
-          <div class="app__detail-item">
-            <label>Durée</label>
-            <span>{{ formatDuration(track.duration) }}</span>
-          </div>
-          <div class="app__detail-item">
-            <label>Note</label>
-            <span class="app__stars">{{ formatRating(track.rating) }}</span>
-          </div>
-          <div class="app__detail-item">
-            <label>Favori</label>
-            <span>{{ track.favorite ? '♥ Oui' : '♡ Non' }}</span>
-          </div>
-        </div>
-      </section>
-    }
-
-  </main>
 </div>
