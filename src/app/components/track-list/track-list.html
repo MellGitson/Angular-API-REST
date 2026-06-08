@@ -1,0 +1,13 @@
+<div class="track-list">
+
+  <!-- F2 – @for itère la liste ; @empty s'affiche si le tableau est vide -->
+  @for (track of tracks(); track track.id) {
+    <app-track-card
+      [track]="track"
+      (selected)="trackSelected.emit($event)"
+    />
+  } @empty {
+    <p class="track-list__empty">Aucun morceau dans la bibliothèque.</p>
+  }
+
+</div>

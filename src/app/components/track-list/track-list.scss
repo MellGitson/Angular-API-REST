@@ -1,0 +1,15 @@
+.track-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+
+  &__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #6c7086;
+    font-style: italic;
+    padding: 3rem 1rem;
+    border: 1px dashed #313244;
+    border-radius: 12px;
+  }
+}
