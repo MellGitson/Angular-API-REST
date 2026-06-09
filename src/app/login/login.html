@@ -1,0 +1,28 @@
+<div class="login-page">
+  <section class="login-card">
+    <h1 class="login-card__title">CinéTrack</h1>
+    <p class="login-card__subtitle">Connecte-toi pour accéder à ta bibliothèque</p>
+
+    <form class="login-card__form" (submit)="onSubmit($event)">
+      <label class="login-card__label" for="login-email">Email</label>
+      <input id="login-email" type="email" [formField]="loginForm.email" />
+      @if (loginForm.email().touched() && !loginForm.email().valid()) {
+        <small class="login-card__error">{{ loginForm.email().errors()[0]?.message }}</small>
+      }
+
+      <label class="login-card__label" for="login-password">Mot de passe</label>
+      <input id="login-password" type="password" [formField]="loginForm.password" />
+      @if (loginForm.password().touched() && !loginForm.password().valid()) {
+        <small class="login-card__error">{{ loginForm.password().errors()[0]?.message }}</small>
+      }
+
+      @if (errorMessage()) {
+        <p class="login-card__error-msg">{{ errorMessage() }}</p>
+      }
+
+      <button type="submit" [disabled]="loading() || !loginForm().valid()">
+        @if (loading()) { Connexion... } @else { Se connecter }
+      </button>
+    </form>
+  </section>
+</div>

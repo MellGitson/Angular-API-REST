@@ -3,12 +3,15 @@
   min-height: 100vh;
 }
 
-.app {
+.home {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
 
   &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 1.5rem;
 
     h1 {
@@ -16,6 +19,20 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: #1a1a1a;
+    }
+  }
+
+  &__logout {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid #c8d1e0;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #5a6475;
+    font-size: 0.875rem;
+    cursor: pointer;
+
+    &:hover {
+      background: #f0f2f5;
     }
   }
 

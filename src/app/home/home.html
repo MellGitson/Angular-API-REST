@@ -1,17 +1,16 @@
-<div class="app">
+<div class="home">
 
-  <header class="app__header">
+  <header class="home__header">
     <h1>CinéTrack</h1>
+    <button class="home__logout" type="button" (click)="onLogout()">Se déconnecter</button>
   </header>
 
-  <app-login />
-
   @if (loading()) {
-    <p class="app__status">Chargement des morceaux...</p>
+    <p class="home__status">Chargement des morceaux...</p>
   }
 
   @if (errorMessage()) {
-    <p class="app__status app__status--error">{{ errorMessage() }}</p>
+    <p class="home__status home__status--error">{{ errorMessage() }}</p>
   }
 
   <app-track-form

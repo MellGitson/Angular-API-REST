@@ -12,6 +12,46 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Frontend + Backend (2 projets separes)
+
+Le frontend Angular et l'API music-api doivent tourner dans deux dossiers differents:
+
+- Projet 1: ce repo Angular (port 4200)
+- Projet 2: repo backend music-api (port 3000)
+
+### 1) Cloner et lancer le backend
+
+Dans un dossier parent (hors de ce repo):
+
+- `git clone <URL_GIT_MUSIC_API>`
+- `cd music-api`
+- `npm install`
+- `npm start`
+
+API attendue sur `http://localhost:3000`.
+
+Verification rapide:
+
+- Ouvrir `http://localhost:3000/tracks` (lecture publique)
+- Tester `POST /login` avec `demo@ipssi.fr` / `password123` pour obtenir un token JWT
+
+Notes backend:
+
+- Base SQLite auto-creee (`data.db`)
+- Seed applique au demarrage (morceaux/utilisateur demo)
+- CORS est active cote API pour autoriser le frontend local
+
+### 2) Lancer le frontend Angular
+
+Dans ce repo:
+
+- `npm install`
+- `npm start` (ou `ng serve`)
+
+La configuration API est dans `src/environments/environment.ts`:
+
+- `apiUrl: 'http://localhost:3000'`
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
