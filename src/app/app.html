@@ -4,8 +4,13 @@
     <h1>CinéTrack</h1>
   </header>
 
+  <app-track-form
+    [trackToEdit]="selectedTrack()"
+    (saveTrack)="onTrackSaved($event)"
+  />
+
   <app-track-list
-    [tracks]="tracks"
+    [tracks]="tracks()"
     [selectedTrackId]="selectedTrackId"
     (trackSelected)="onTrackSelected($event)"
   />

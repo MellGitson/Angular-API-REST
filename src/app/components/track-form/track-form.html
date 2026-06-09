@@ -1,0 +1,34 @@
+<form class="track-form" (submit)="onSubmit($event)">
+  <h2 class="track-form__title">
+    @if (model().id !== null) {
+      Modifier un morceau
+    } @else {
+      Ajouter un morceau
+    }
+  </h2>
+
+  <label class="track-form__label" for="track-title">Titre</label>
+  <input id="track-title" type="text" [formField]="trackForm.title" />
+  @if (trackForm.title().touched() && !trackForm.title().valid()) {
+    <small class="track-form__error">{{ trackForm.title().errors()[0]?.message }}</small>
+  }
+
+  <label class="track-form__label" for="track-artist">Artiste</label>
+  <input id="track-artist" type="text" [formField]="trackForm.artist" />
+  @if (trackForm.artist().touched() && !trackForm.artist().valid()) {
+    <small class="track-form__error">{{ trackForm.artist().errors()[0]?.message }}</small>
+  }
+
+  <label class="track-form__label" for="track-rating">Note (0-10)</label>
+  <input id="track-rating" type="number" [formField]="trackForm.rating" />
+  @if (trackForm.rating().touched() && !trackForm.rating().valid()) {
+    <small class="track-form__error">{{ trackForm.rating().errors()[0]?.message }}</small>
+  }
+
+  <div class="track-form__actions">
+    <button type="submit" [disabled]="!trackForm().valid()">Enregistrer</button>
+    @if (model().id !== null) {
+      <button type="button" class="track-form__secondary" (click)="onReset()">Nouveau</button>
+    }
+  </div>
+</form>

@@ -5,7 +5,7 @@ export interface Track {
   album: string;
   genre: string;
   duration: number; // secondes
-  rating: number;   // 0–5
+  rating: number;   // 0-10
   favorite: boolean;
   coverUrl: string;
 }
