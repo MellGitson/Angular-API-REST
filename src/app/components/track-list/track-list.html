@@ -1,14 +1,42 @@
 <div class="track-list">
 
-  <!-- F2 – @for itère la liste ; @empty s'affiche si le tableau est vide -->
-  @for (track of tracks(); track track.id) {
-    <app-track-card
-      [track]="track"
-      [isPlaying]="selectedTrackId() === track.id"
-      (selected)="trackSelected.emit($event)"
+  <!-- F4 – barre de recherche instantanée -->
+  <div class="track-list__search">
+    <input
+      class="track-list__search-input"
+      type="search"
+      placeholder="Rechercher un morceau…"
+      [value]="searchTerm()"
+      (input)="searchTerm.set($any($event.target).value)"
     />
-  } @empty {
-    <p class="track-list__empty">Aucun morceau dans la bibliothèque.</p>
-  }
+    <select
+      class="track-list__search-select"
+      [value]="searchField()"
+      (change)="searchField.set($any($event.target).value)"
+    >
+      <option value="all">Titre & artiste</option>
+      <option value="title">Titre</option>
+      <option value="artist">Artiste</option>
+    </select>
+  </div>
+
+  <!-- F4 – @for itère la liste filtrée ; @empty gère l'absence de résultats -->
+  <div class="track-list__cards">
+    @for (track of filteredTracks(); track track.id) {
+      <app-track-card
+        [track]="track"
+        [isPlaying]="selectedTrackId() === track.id"
+        (selected)="trackSelected.emit($event)"
+      />
+    } @empty {
+      @if (searchTerm()) {
+        <p class="track-list__empty">
+          Aucun résultat pour «&nbsp;{{ searchTerm() }}&nbsp;».
+        </p>
+      } @else {
+        <p class="track-list__empty">Aucun morceau dans la bibliothèque.</p>
+      }
+    }
+  </div>
 
 </div>

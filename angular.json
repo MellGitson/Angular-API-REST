@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "music-library": {
+    "cinetrack": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -68,10 +68,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "music-library:build:production"
+              "buildTarget": "cinetrack:build:production"
             },
             "development": {
-              "buildTarget": "music-library:build:development"
+              "buildTarget": "cinetrack:build:development"
             }
           },
           "defaultConfiguration": "development"
