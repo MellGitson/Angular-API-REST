@@ -1,6 +1,7 @@
 <div
   class="track-card"
   [class.track-card--playing]="isPlaying()"
+  [appHighlightFavorite]="track().favorite"
   (click)="onSelect()"
 >
 
@@ -13,6 +14,28 @@
   <div class="track-card__body">
     <h3 class="track-card__title">{{ track().title }}</h3>
     <p class="track-card__artist">{{ track().artist }}</p>
+    <p class="track-card__meta">
+      <span>{{ track().album }}</span>
+      <span>{{ track().duration | durationFormat }}</span>
+    </p>
+
+    <div class="track-card__tags">
+      @if (track().favorite) {
+        <span class="track-card__tag track-card__tag--favorite">❤ Favori</span>
+      }
+
+      @switch (true) {
+        @case (track().rating >= 5) {
+          <span class="track-card__tag track-card__tag--gold">⭐ Coup de coeur</span>
+        }
+        @case (track().rating >= 4) {
+          <span class="track-card__tag">👍 Recommande</span>
+        }
+        @default {
+          <span class="track-card__tag track-card__tag--muted">A decouvrir</span>
+        }
+      }
+    </div>
 
     @if (isPlaying()) {
       <span class="track-card__badge">▶ En lecture</span>

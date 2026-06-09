@@ -44,6 +44,53 @@
     color: #666;
   }
 
+  &__meta {
+    margin: 0.3rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.76rem;
+    color: #6b7280;
+  }
+
+  &__tags {
+    margin-top: 0.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.16rem 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #334155;
+    background: #f8fafc;
+  }
+
+  &__tag--favorite {
+    color: #b45309;
+    background: #fff7ed;
+    border-color: #fcd34d;
+  }
+
+  &__tag--gold {
+    color: #854d0e;
+    background: #fef9c3;
+    border-color: #fde047;
+  }
+
+  &__tag--muted {
+    color: #64748b;
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+
   &__badge {
     display: inline-flex;
     align-items: center;

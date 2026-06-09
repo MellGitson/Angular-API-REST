@@ -1,12 +1,14 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { HighlightFavoriteDirective } from '../../directives/highlight-favorite.directive';
 import { Track } from '../../models/track.model';
+import { DurationFormatPipe } from '../../pipes/duration-format.pipe';
 
 @Component({
   selector: 'app-track-card',
-  standalone: true,
-  imports: [],
+  imports: [DurationFormatPipe, HighlightFavoriteDirective],
   templateUrl: './track-card.html',
   styleUrl: './track-card.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrackCardComponent {
   // F1 – input signal : reçoit un Track depuis le parent
