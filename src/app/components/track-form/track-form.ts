@@ -1,81 +1,59 @@
-import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
-import { FormField, form, max, min, required } from '@angular/forms/signals';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { TrackService } from '../../services/track';
 import { Track } from '../../models/track.model';
-
-export interface TrackFormValue {
-  id: number | null;
-  title: string;
-  artist: string;
-  rating: number;
-}
 
 @Component({
   selector: 'app-track-form',
-  imports: [FormField],
+  imports: [FormsModule],
   templateUrl: './track-form.html',
   styleUrl: './track-form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TrackFormComponent {
-  trackToEdit = input<Track | null>(null);
-  saveTrack = output<TrackFormValue>();
+export class TrackForm implements OnInit {
+  id = input<string | undefined>(undefined);
 
-  protected model = signal<TrackFormValue>({
-    id: null,
-    title: '',
-    artist: '',
-    rating: 5,
-  });
+  private readonly trackService = inject(TrackService);
+  private readonly router = inject(Router);
 
-  protected trackForm = form(this.model, (path) => {
-    required(path.title, { message: 'Le titre est requis' });
-    required(path.artist, { message: "L'artiste est requis" });
-    min(path.rating, 0, { message: 'La note minimale est 0' });
-    max(path.rating, 10, { message: 'La note maximale est 10' });
-  });
+  protected title = signal('');
+  protected artist = signal('');
+  protected rating = signal(5);
 
-  constructor() {
-    effect(() => {
-      const track = this.trackToEdit();
-      if (!track) {
-        return;
-      }
-
-      this.model.set({
-        id: track.id,
-        title: track.title,
-        artist: track.artist,
-        rating: track.rating,
+  ngOnInit(): void {
+    const id = this.id();
+    if (id) {
+      this.trackService.getTrack(Number(id)).subscribe((track) => {
+        this.title.set(track.title);
+        this.artist.set(track.artist);
+        this.rating.set(track.rating);
       });
-    });
+    }
   }
 
-  protected onSubmit(event: Event): void {
-    event.preventDefault();
-    if (!this.trackForm().valid()) {
-      return;
+  protected save(): void {
+    const payload: Omit<Track, 'id'> = {
+      title: this.title(),
+      artist: this.artist(),
+      rating: this.rating(),
+      album: '',
+      genre: '',
+      duration: 0,
+      favorite: false,
+      coverUrl: '',
+      year: null,
+    };
+
+    const id = this.id();
+    if (id) {
+      this.trackService.update(Number(id), payload).subscribe(() => {
+        this.router.navigate(['/tracks']);
+      });
+    } else {
+      this.trackService.create(payload).subscribe(() => {
+        this.router.navigate(['/tracks']);
+      });
     }
-
-    this.saveTrack.emit(this.model());
-
-    if (this.model().id !== null) {
-      return;
-    }
-
-    this.model.set({
-      id: null,
-      title: '',
-      artist: '',
-      rating: 5,
-    });
-  }
-
-  protected onReset(): void {
-    this.model.set({
-      id: null,
-      title: '',
-      artist: '',
-      rating: 5,
-    });
   }
 }

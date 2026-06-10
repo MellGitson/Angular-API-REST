@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, of, switchMap } from 'rxjs';
 import { DurationFormatPipe } from '../pipes/duration-format.pipe';
 import { TrackService } from '../services/track';
+import { AuthService } from '../services/auth';
 
 @Component({
   selector: 'app-track-detail',
@@ -17,6 +18,7 @@ export class TrackDetail {
 
   private readonly service = inject(TrackService);
   private readonly router = inject(Router);
+  protected readonly auth = inject(AuthService);
 
   protected readonly track = toSignal(
     toObservable(this.id).pipe(
@@ -27,6 +29,12 @@ export class TrackDetail {
   );
 
   goBack(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/tracks']);
+  }
+
+  remove(): void {
+    this.service.remove(this.id()).subscribe(() => {
+      this.router.navigate(['/tracks']);
+    });
   }
 }
