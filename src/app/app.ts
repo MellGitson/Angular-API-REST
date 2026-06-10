@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from './services/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  template: '<router-outlet />',
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  protected auth = inject(AuthService);
+}

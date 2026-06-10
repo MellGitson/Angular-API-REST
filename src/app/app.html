@@ -1,28 +1,20 @@
-<div class="app">
+<header>
+  <h1>CinéTrack</h1>
+  <nav>
+    <a routerLink="/tracks" routerLinkActive="active">Catalogue</a>
+    @if (auth.isAuthenticated()) {
+      <a routerLink="/tracks/new" routerLinkActive="active">Ajouter</a>
+    }
+  </nav>
 
-  <header class="app__header">
-    <h1>CinéTrack</h1>
-  </header>
+  <div class="auth-panel">
+    @if (auth.isAuthenticated()) {
+      <span>Connecté</span>
+      <button type="button" (click)="auth.logout()">Se déconnecter</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="active">Se connecter</a>
+    }
+  </div>
+</header>
 
-  <app-login />
-
-  @if (loading()) {
-    <p class="app__status">Chargement des morceaux...</p>
-  }
-
-  @if (errorMessage()) {
-    <p class="app__status app__status--error">{{ errorMessage() }}</p>
-  }
-
-  <app-track-form
-    [trackToEdit]="selectedTrack()"
-    (saveTrack)="onTrackSaved($event)"
-  />
-
-  <app-track-list
-    [tracks]="tracks()"
-    [selectedTrackId]="selectedTrackId"
-    (trackSelected)="onTrackSelected($event)"
-  />
-
-</div>
+<router-outlet />

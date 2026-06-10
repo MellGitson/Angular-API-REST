@@ -1,28 +1,28 @@
-import { inject } from '@angular/core';
-import { Router, Routes } from '@angular/router';
-import { HomeComponent } from './home/home';
-import { Login } from './login/login';
-import { AuthService } from './services/auth';
-
-const authGuard = () => {
-  const auth = inject(AuthService);
-  const router = inject(Router);
-  if (auth.isAuthenticated()) return true;
-  return router.createUrlTree(['/login']);
-};
+import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [authGuard] },
-  { path: 'login', component: Login },
+  { path: '', redirectTo: 'tracks', pathMatch: 'full' },
   {
-    path: 'search',
+    path: 'tracks',
+    loadComponent: () => import('./components/track-list/track-list').then((m) => m.TrackList),
+  },
+  {
+    path: 'tracks/new',
     canActivate: [authGuard],
-    loadComponent: () => import('./track-search/track-search').then((m) => m.TrackSearch),
+    loadComponent: () => import('./components/track-form/track-form').then((m) => m.TrackForm),
   },
   {
     path: 'tracks/:id',
-    canActivate: [authGuard],
     loadComponent: () => import('./track-detail/track-detail').then((m) => m.TrackDetail),
   },
-  { path: '**', redirectTo: '' },
+  {
+    path: 'tracks/:id/edit',
+    canActivate: [authGuard],
+    loadComponent: () => import('./components/track-form/track-form').then((m) => m.TrackForm),
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login').then((m) => m.Login),
+  },
 ];
