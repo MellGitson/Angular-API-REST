@@ -41,6 +41,22 @@ export class TrackService {
       .pipe(map((response) => this.normalizeTrack(response)));
   }
 
+  create(track: Omit<Track, 'id'>): Observable<Track> {
+    return this.http
+      .post<unknown>(this.apiUrl, track)
+      .pipe(map((response) => this.normalizeTrack(response)));
+  }
+
+  update(id: number, changes: Partial<Track>): Observable<Track> {
+    return this.http
+      .patch<unknown>(`${this.apiUrl}/${id}`, changes)
+      .pipe(map((response) => this.normalizeTrack(response)));
+  }
+
+  remove(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
   search(query: string): Observable<Track[]> {
     const q = query.trim();
     if (!q) return this.getTracks();
