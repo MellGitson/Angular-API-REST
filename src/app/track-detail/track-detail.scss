@@ -1,0 +1,204 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6fb;
+  color: #1a1a1a;
+}
+
+.detail {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__back {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 1.75rem 0 0 2.5rem;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border: 1px solid #e4e8f0;
+    border-radius: 9999px;
+    color: #374151;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    transition: background 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      background: #f4f6fb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* ── Hero ── */
+  &__hero {
+    position: relative;
+    height: 55vh;
+    min-height: 340px;
+    overflow: hidden;
+  }
+
+  &__hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(40px) brightness(0.7) saturate(1.4);
+    transform: scale(1.1);
+  }
+
+  &__hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, #f4f6fb 100%);
+  }
+
+  &__hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    padding: 2.5rem 3rem;
+  }
+
+  &__cover {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+  }
+
+  &__hero-info {
+    padding-bottom: 0.5rem;
+  }
+
+  &__genre-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #374151;
+    margin-bottom: 0.75rem;
+    backdrop-filter: blur(8px);
+  }
+
+  &__title {
+    margin: 0 0 0.35rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  &__artist {
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ── Body ── */
+  &__body {
+    flex: 1;
+    padding: 2.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 960px;
+  }
+
+  /* ── Stats cards ── */
+  &__stat {
+    background: #fff;
+    border: 1px solid #e4e8f0;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s, transform 0.18s;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__stat-icon {
+    font-size: 1.5rem;
+    width: 2.5rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  &__stat-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 0.2rem;
+  }
+
+  &__stat-value {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  /* ── Rating bar ── */
+  &__rating-bar {
+    margin-top: 0.4rem;
+    height: 4px;
+    background: #e4e8f0;
+    border-radius: 9999px;
+    overflow: hidden;
+
+    span {
+      display: block;
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(to right, #7c3aed, #ec4899);
+      transition: width 0.6s ease;
+    }
+  }
+
+  /* ── Favorite full-width card ── */
+  &__stat--favorite {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #fdf4ff, #fff0f7);
+    border-color: #e9d5ff;
+  }
+
+  /* ── Status ── */
+  &__status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    font-size: 1rem;
+    color: #9ca3af;
+
+    &--error {
+      color: #b42318;
+    }
+  }
+}

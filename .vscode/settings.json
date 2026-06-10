@@ -1,0 +1,7 @@
+{
+    "qwen-code.model": "qwen/qwen2.5-coder-32b-instruct:free",
+    "qwen-code.temperature": 0.7,
+    "qwen-code.maxTokens": 2048,
+    "qwen-code.autoApproveEdits": false,
+    "qwen-code.showLoadingIndicator": true
+}

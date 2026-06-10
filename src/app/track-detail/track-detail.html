@@ -1,1 +1,79 @@
-<p>track-detail works!</p>
+<div class="detail">
+
+  <button class="detail__back" type="button" (click)="goBack()">← Retour</button>
+
+  @if (track() === undefined) {
+    <p class="detail__status">Chargement…</p>
+  } @else if (track() === null) {
+    <p class="detail__status detail__status--error">Impossible de charger ce morceau.</p>
+  } @else {
+
+    <div class="detail__hero">
+      <img class="detail__hero-bg" [src]="track()!.coverUrl" [alt]="" aria-hidden="true" />
+      <div class="detail__hero-gradient"></div>
+
+      <div class="detail__hero-content">
+        <img class="detail__cover" [src]="track()!.coverUrl" [alt]="track()!.title" />
+
+        <div class="detail__hero-info">
+          <span class="detail__genre-badge">{{ track()!.genre }}</span>
+          <h1 class="detail__title">{{ track()!.title }}</h1>
+          <p class="detail__artist">
+            {{ track()!.artist }}
+            @if (track()!.year) { · {{ track()!.year }} }
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail__body">
+
+      <div class="detail__stat">
+        <span class="detail__stat-icon">💿</span>
+        <div>
+          <span class="detail__stat-label">Album</span>
+          <span class="detail__stat-value">{{ track()!.album }}</span>
+        </div>
+      </div>
+
+      <div class="detail__stat">
+        <span class="detail__stat-icon">⏱</span>
+        <div>
+          <span class="detail__stat-label">Durée</span>
+          <span class="detail__stat-value">{{ track()!.duration | durationFormat }}</span>
+        </div>
+      </div>
+
+      <div class="detail__stat">
+        <span class="detail__stat-icon">⭐</span>
+        <div style="flex:1">
+          <span class="detail__stat-label">Note</span>
+          <span class="detail__stat-value">{{ track()!.rating }} / 10</span>
+          <div class="detail__rating-bar">
+            <span [style.width.%]="track()!.rating * 10"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail__stat">
+        <span class="detail__stat-icon">🎵</span>
+        <div>
+          <span class="detail__stat-label">Genre</span>
+          <span class="detail__stat-value">{{ track()!.genre }}</span>
+        </div>
+      </div>
+
+      @if (track()!.favorite) {
+        <div class="detail__stat detail__stat--favorite">
+          <span class="detail__stat-icon">❤️</span>
+          <div>
+            <span class="detail__stat-label">Favori</span>
+            <span class="detail__stat-value">Ce morceau fait partie de tes favoris</span>
+          </div>
+        </div>
+      }
+
+    </div>
+  }
+
+</div>

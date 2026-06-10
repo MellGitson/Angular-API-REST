@@ -2,26 +2,27 @@
 
   <header class="home__header">
     <h1>CinéTrack</h1>
-    <button class="home__logout" type="button" (click)="onLogout()">Se déconnecter</button>
+    <!-- <button class="home__logout" type="button" (click)="onLogout()">Se déconnecter</button> -->
   </header>
 
   @if (loading()) {
     <p class="home__status">Chargement des morceaux...</p>
   }
-
   @if (errorMessage()) {
     <p class="home__status home__status--error">{{ errorMessage() }}</p>
   }
 
-  <app-track-form
-    [trackToEdit]="selectedTrack()"
-    (saveTrack)="onTrackSaved($event)"
-  />
+  <div class="home__content">
+    <app-track-form
+      [trackToEdit]="selectedTrack()"
+      (saveTrack)="onTrackSaved($event)"
+    />
 
-  <app-track-list
-    [tracks]="tracks()"
-    [selectedTrackId]="selectedTrackId"
-    (trackSelected)="onTrackSelected($event)"
-  />
+    <app-track-list
+      [tracks]="tracks()"
+      [selectedTrackId]="selectedTrackId"
+      (trackSelected)="onTrackSelected($event)"
+    />
+  </div>
 
 </div>

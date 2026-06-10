@@ -1,51 +1,74 @@
 :host {
   display: block;
   min-height: 100vh;
+  background: #f4f6fb;
+  color: #1a1a1a;
 }
 
 .home {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 0 2rem 4rem;
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    padding: 1.75rem 0 2rem;
+    border-bottom: 1px solid #e4e8f0;
+    margin-bottom: 2.5rem;
 
     h1 {
       margin: 0;
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
       color: #1a1a1a;
     }
   }
 
   &__logout {
-    padding: 0.4rem 0.9rem;
+    padding: 0.45rem 1rem;
     border: 1px solid #c8d1e0;
-    border-radius: 0.5rem;
+    border-radius: 9999px;
     background: transparent;
     color: #5a6475;
-    font-size: 0.875rem;
+    font-size: 0.82rem;
     cursor: pointer;
+    transition: background 0.2s, color 0.2s;
 
     &:hover {
-      background: #f0f2f5;
+      background: #e8ecf4;
+      color: #1a1a1a;
     }
   }
 
   &__status {
-    margin: 0 0 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
+    margin: 0 0 1.5rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: 0.75rem;
     background: #eef4ff;
+    border: 1px solid #c3d4f5;
     color: #1f3a70;
+    font-size: 0.9rem;
   }
 
   &__status--error {
     background: #ffeaea;
+    border-color: #f5c3c3;
     color: #7a1f1f;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    &__content {
+      grid-template-columns: 1fr;
+    }
   }
 }

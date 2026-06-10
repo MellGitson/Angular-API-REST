@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { HighlightFavoriteDirective } from '../../directives/highlight-favorite.directive';
 import { Track } from '../../models/track.model';
 import { DurationFormatPipe } from '../../pipes/duration-format.pipe';
 
 @Component({
   selector: 'app-track-card',
-  imports: [DurationFormatPipe, HighlightFavoriteDirective],
+  imports: [DurationFormatPipe, HighlightFavoriteDirective, RouterLink],
   templateUrl: './track-card.html',
   styleUrl: './track-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

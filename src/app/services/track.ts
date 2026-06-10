@@ -17,6 +17,12 @@ export class TrackService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = `${environment.apiUrl}/tracks`;
 
+  getTrack(id: number): Observable<Track> {
+    return this.http
+      .get<unknown>(`${this.apiUrl}/${id}`)
+      .pipe(map((response) => this.normalizeTrack(response)));
+  }
+
   getTracks(): Observable<Track[]> {
     return this.http.get<unknown>(this.apiUrl).pipe(
       map((response) => this.extractTrackList(response).map((item) => this.normalizeTrack(item))),
@@ -73,6 +79,7 @@ export class TrackService {
       coverUrl:
         this.asString(source['coverUrl']) ||
         `https://picsum.photos/seed/${encodeURIComponent(`${title}-${artist}`)}/200/160`,
+      year: typeof source['year'] === 'number' ? source['year'] : null,
     };
   }
 

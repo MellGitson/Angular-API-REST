@@ -8,4 +8,5 @@ export interface Track {
   rating: number;   // 0-10
   favorite: boolean;
   coverUrl: string;
+  year: number | null;
 }

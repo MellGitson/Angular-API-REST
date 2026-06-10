@@ -12,20 +12,21 @@
   padding: 2.5rem 2rem;
   background: #fff;
   border: 1px solid #e4e8f0;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 
   &__title {
     margin: 0 0 0.25rem;
     font-size: 1.6rem;
-    font-weight: 700;
-    color: #1a1a1a;
+    font-weight: 800;
     text-align: center;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
   }
 
   &__subtitle {
     margin: 0 0 2rem;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: #6b7280;
     text-align: center;
   }
@@ -37,56 +38,64 @@
 
   &__label {
     font-weight: 600;
-    font-size: 0.875rem;
-    color: #374151;
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #6b7280;
   }
 
   input {
-    padding: 0.6rem 0.75rem;
-    border: 1px solid #c8d1e0;
-    border-radius: 0.5rem;
-    font-size: 0.9rem;
-    transition: border-color 0.15s;
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background: #f8fafc;
+    border: 1px solid #d1d5db;
+    border-radius: 0.6rem;
+    font-size: 0.92rem;
+    color: #1a1a1a;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    box-sizing: border-box;
 
     &:focus {
-      outline: none;
-      border-color: #274a96;
+      border-color: #7c3aed;
+      background: #faf7ff;
     }
   }
 
   button[type='submit'] {
     margin-top: 0.75rem;
-    padding: 0.65rem;
+    padding: 0.75rem;
     border: none;
-    border-radius: 0.5rem;
-    background: #274a96;
+    border-radius: 0.6rem;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
     color: #fff;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: opacity 0.2s;
 
     &:hover:not(:disabled) {
-      background: #1d3a7a;
+      opacity: 0.85;
     }
 
     &:disabled {
-      opacity: 0.6;
+      opacity: 0.4;
       cursor: not-allowed;
     }
   }
 
   &__error {
-    color: #912727;
-    font-size: 0.8rem;
+    color: #b42318;
+    font-size: 0.78rem;
   }
 
   &__error-msg {
     margin: 0.25rem 0 0;
-    padding: 0.6rem 0.75rem;
+    padding: 0.65rem 0.9rem;
     background: #ffeaea;
+    border: 1px solid #f5c3c3;
     color: #7a1f1f;
-    border-radius: 0.5rem;
+    border-radius: 0.6rem;
     font-size: 0.875rem;
   }
 }

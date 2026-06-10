@@ -2,6 +2,7 @@
   class="track-card"
   [class.track-card--playing]="isPlaying()"
   [appHighlightFavorite]="track().favorite"
+  [routerLink]="['/tracks', track().id]"
   (click)="onSelect()"
 >
 
@@ -40,6 +41,7 @@
     @if (isPlaying()) {
       <span class="track-card__badge">▶ En lecture</span>
     }
+
   </div>
 
 </div>

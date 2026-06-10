@@ -14,5 +14,10 @@ const authGuard = () => {
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: Login },
+  {
+    path: 'tracks/:id',
+    canActivate: [authGuard],
+    loadComponent: () => import('./track-detail/track-detail').then((m) => m.TrackDetail),
+  },
   { path: '**', redirectTo: '' },
 ];
