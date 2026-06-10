@@ -1,0 +1,37 @@
+.track-search {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+
+  &__bar {
+    margin-bottom: 1.5rem;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+  }
+
+  &__results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  &__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    padding: 2rem 0;
+  }
+}

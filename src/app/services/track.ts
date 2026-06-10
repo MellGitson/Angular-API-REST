@@ -41,6 +41,16 @@ export class TrackService {
       .pipe(map((response) => this.normalizeTrack(response)));
   }
 
+  search(query: string): Observable<Track[]> {
+    const q = query.trim();
+    if (!q) return this.getTracks();
+    return this.http
+      .get<unknown>(this.apiUrl, { params: { q } })
+      .pipe(
+        map((response) => this.extractTrackList(response).map((item) => this.normalizeTrack(item))),
+      );
+  }
+
   private extractTrackList(response: unknown): unknown[] {
     if (Array.isArray(response)) {
       return response;

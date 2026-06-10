@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { catchError, finalize, of, startWith, Subject, switchMap, tap } from 'rxjs';
 import { TrackFormComponent, TrackFormValue } from '../components/track-form/track-form';
 import { TrackListComponent } from '../components/track-list/track-list';
@@ -11,7 +11,7 @@ import { TrackService } from '../services/track';
 
 @Component({
   selector: 'app-home',
-  imports: [TrackFormComponent, TrackListComponent],
+  imports: [TrackFormComponent, TrackListComponent, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

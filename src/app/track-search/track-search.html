@@ -1,1 +1,24 @@
-<p>track-search works!</p>
+<div class="track-search">
+  <div class="track-search__bar">
+    <input
+      class="track-search__input"
+      type="search"
+      placeholder="Rechercher un morceau côté serveur…"
+      (input)="term.set($any($event.target).value)"
+      [value]="term()"
+      autofocus
+    />
+  </div>
+
+  <div class="track-search__results">
+    @for (track of results(); track track.id) {
+      <app-track-card [track]="track" />
+    } @empty {
+      @if (term()) {
+        <p class="track-search__empty">Aucun résultat pour «&nbsp;{{ term() }}&nbsp;».</p>
+      } @else {
+        <p class="track-search__empty">Saisissez un terme pour lancer la recherche.</p>
+      }
+    }
+  </div>
+</div>
