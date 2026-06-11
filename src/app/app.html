@@ -1,20 +1,23 @@
-<header>
-  <h1>CinéTrack</h1>
-  <nav>
+<header class="header">
+  <h1 class="header__title">CinéTrack</h1>
+
+  <nav class="header__nav">
     <a routerLink="/tracks" routerLinkActive="active">Catalogue</a>
     @if (auth.isAuthenticated()) {
       <a routerLink="/tracks/new" routerLinkActive="active">Ajouter</a>
     }
   </nav>
 
-  <div class="auth-panel">
+  <div class="header__auth">
     @if (auth.isAuthenticated()) {
-      <span>Connecté</span>
-      <button type="button" (click)="auth.logout()">Se déconnecter</button>
+      <span class="header__status">● En ligne</span>
+      <button type="button" class="header__logout" (click)="auth.logout()">Se déconnecter</button>
     } @else {
       <a routerLink="/login" routerLinkActive="active">Se connecter</a>
     }
   </div>
 </header>
 
-<router-outlet />
+<main class="main">
+  <router-outlet />
+</main>

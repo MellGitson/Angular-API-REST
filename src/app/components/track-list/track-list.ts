@@ -1,34 +1,24 @@
-import { Component, computed, input, output, signal } from '@angular/core';
-import { Track } from '../../models/track.model';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TrackService } from '../../services/track';
 import { TrackCardComponent } from '../track-card/track-card';
 
-/** Critères possibles pour la recherche — union type TypeScript */
 type SearchField = 'all' | 'title' | 'artist';
 
 @Component({
   selector: 'app-track-list',
-  standalone: true,
   imports: [TrackCardComponent],
   templateUrl: './track-list.html',
   styleUrl: './track-list.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TrackListComponent {
-  // F2 – input signal : reçoit le tableau de morceaux
-  tracks = input<Track[]>([]);
+export class TrackList {
+  private readonly trackService = inject(TrackService);
 
-  // F3 – id du morceau actuellement sélectionné (pour le badge)
-  selectedTrackId = input<number | null>(null);
-
-  // F3 – output signal : remonte le morceau cliqué vers le parent
-  trackSelected = output<Track>();
-
-  // F4 – signal mutable : terme saisi dans la barre de recherche
+  protected readonly tracks = toSignal(this.trackService.getTracks(), { initialValue: [] });
   protected searchTerm = signal('');
-
-  // F4 – union type : champ sur lequel porte la recherche
   protected searchField = signal<SearchField>('all');
 
-  // F4 – computed : recalcule automatiquement dès que searchTerm ou tracks change
   protected filteredTracks = computed(() => {
     const term = this.searchTerm().toLowerCase().trim();
     if (!term) return this.tracks();
