@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { afterNextRender, computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { map, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -29,6 +29,15 @@ export class AuthService {
   private readonly tokenState = signal<string | null>(this.readStoredToken());
   readonly token = this.tokenState.asReadonly();
   readonly isAuthenticated = computed(() => this.tokenState() !== null);
+
+  constructor() {
+    afterNextRender(() => {
+      const stored = localStorage.getItem(this.storageKey);
+      if (stored && !this.tokenState()) {
+        this.tokenState.set(stored);
+      }
+    });
+  }
 
   login(payload: LoginPayload): Observable<string> {
     return this.http.post<AuthResponse>(`${environment.apiUrl}/login`, payload).pipe(

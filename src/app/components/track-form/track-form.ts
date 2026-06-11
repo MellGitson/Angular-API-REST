@@ -20,6 +20,8 @@ export class TrackForm implements OnInit {
   protected title = signal('');
   protected artist = signal('');
   protected rating = signal(5);
+  protected toastVisible = signal(false);
+  protected toastMessage = signal('');
 
   ngOnInit(): void {
     const id = this.id();
@@ -48,12 +50,20 @@ export class TrackForm implements OnInit {
     const id = this.id();
     if (id) {
       this.trackService.update(Number(id), payload).subscribe(() => {
-        this.router.navigate(['/tracks']);
+        this.showToast('Morceau modifié avec succès !');
+        setTimeout(() => this.router.navigate(['/tracks']), 1500);
       });
     } else {
       this.trackService.create(payload).subscribe(() => {
-        this.router.navigate(['/tracks']);
+        this.showToast('Morceau ajouté avec succès !');
+        setTimeout(() => this.router.navigate(['/tracks']), 1500);
       });
     }
+  }
+
+  private showToast(message: string): void {
+    this.toastMessage.set(message);
+    this.toastVisible.set(true);
+    setTimeout(() => this.toastVisible.set(false), 2500);
   }
 }

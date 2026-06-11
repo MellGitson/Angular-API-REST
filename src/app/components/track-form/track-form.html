@@ -1,3 +1,7 @@
+@if (toastVisible()) {
+  <div class="toast">{{ toastMessage() }}</div>
+}
+
 <form class="track-form" (ngSubmit)="save()">
   <h2 class="track-form__title">
     @if (id()) {
