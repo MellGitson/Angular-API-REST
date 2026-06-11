@@ -21,7 +21,7 @@
 
   <div class="track-list__cards">
     @for (track of filteredTracks(); track track.id) {
-      <app-track-card [track]="track" />
+      <app-track-card [track]="track" (toggleFavorite)="onToggleFavorite($event)" />
     } @empty {
       @if (searchTerm()) {
         <p class="track-list__empty">Aucun résultat pour «&nbsp;{{ searchTerm() }}&nbsp;».</p>

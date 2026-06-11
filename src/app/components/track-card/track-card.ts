@@ -12,16 +12,18 @@ import { DurationFormatPipe } from '../../pipes/duration-format.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrackCardComponent {
-  // F1 – input signal : reçoit un Track depuis le parent
   track = input.required<Track>();
-
-  // F3 – indique si ce morceau est actuellement sélectionné
   isPlaying = input<boolean>(false);
-
-  // F3 – output signal : notifie le parent d'un clic
   selected = output<Track>();
+  toggleFavorite = output<Track>();
 
   onSelect(): void {
     this.selected.emit(this.track());
+  }
+
+  onToggleFavorite(event: Event): void {
+    event.stopPropagation();
+    event.preventDefault();
+    this.toggleFavorite.emit(this.track());
   }
 }

@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
 import { TrackService } from '../../services/track';
 import { TrackCardComponent } from '../track-card/track-card';
+import { Track } from '../../models/track.model';
 
 type SearchField = 'all' | 'title' | 'artist';
 
@@ -15,7 +17,13 @@ type SearchField = 'all' | 'title' | 'artist';
 export class TrackList {
   private readonly trackService = inject(TrackService);
 
-  protected readonly tracks = toSignal(this.trackService.getTracks(), { initialValue: [] });
+  private readonly reload = signal(0);
+
+  protected readonly tracks = toSignal(
+    toObservable(this.reload).pipe(switchMap(() => this.trackService.getTracks())),
+    { initialValue: [] },
+  );
+
   protected searchTerm = signal('');
   protected searchField = signal<SearchField>('all');
 
@@ -35,4 +43,10 @@ export class TrackList {
       }
     });
   });
+
+  protected onToggleFavorite(track: Track): void {
+    this.trackService.update(track.id, { favorite: !track.favorite }).subscribe(() => {
+      this.reload.update((n) => n + 1);
+    });
+  }
 }

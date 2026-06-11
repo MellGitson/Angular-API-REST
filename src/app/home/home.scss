@@ -1,72 +1,78 @@
 :host {
   display: block;
   min-height: 100vh;
-  background: #f4f6fb;
-  color: #1a1a1a;
+  background: var(--bg);
+  color: var(--ink);
 }
 
 .home {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem 4rem;
+  padding: 0 var(--sp-8) var(--sp-16);
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.75rem 0 2rem;
-    border-bottom: 1px solid #e4e8f0;
-    margin-bottom: 2.5rem;
+    padding: var(--sp-8) 0 var(--sp-6);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--sp-8);
 
     h1 {
       margin: 0;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #1a1a1a;
+      letter-spacing: -0.03em;
+      color: var(--ink);
     }
   }
 
   &__logout {
-    padding: 0.45rem 1rem;
-    border: 1px solid #c8d1e0;
-    border-radius: 9999px;
+    padding: var(--sp-2) var(--sp-4);
+    border: 1px solid var(--border);
+    border-radius: var(--r-full);
     background: transparent;
-    color: #5a6475;
-    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: all var(--t-fast) var(--ease-out);
 
     &:hover {
-      background: #e8ecf4;
-      color: #1a1a1a;
+      border-color: var(--danger);
+      color: var(--danger);
+      background: oklch(0.58 0.190 25 / 0.08);
     }
   }
 
   &__status {
-    margin: 0 0 1.5rem;
-    padding: 0.85rem 1.25rem;
-    border-radius: 0.75rem;
-    background: #eef4ff;
-    border: 1px solid #c3d4f5;
-    color: #1f3a70;
-    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin: 0 0 var(--sp-6);
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--ink-2);
+    font-size: 0.875rem;
   }
 
   &__status--error {
-    background: #ffeaea;
-    border-color: #f5c3c3;
-    color: #7a1f1f;
+    background: oklch(0.58 0.190 25 / 0.10);
+    border-color: oklch(0.58 0.190 25 / 0.30);
+    color: oklch(0.80 0.120 25);
   }
 
   &__content {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 340px 1fr;
+    gap: var(--sp-8);
     align-items: start;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     &__content {
       grid-template-columns: 1fr;
     }

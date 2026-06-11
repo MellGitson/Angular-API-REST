@@ -1,0 +1,16 @@
+<div class="favorites">
+
+  <div class="favorites__header">
+    <h2 class="favorites__title">❤ Mes favoris</h2>
+    <span class="favorites__count">{{ favorites().length }} morceau{{ favorites().length > 1 ? 'x' : '' }}</span>
+  </div>
+
+  <div class="favorites__cards">
+    @for (track of favorites(); track track.id) {
+      <app-track-card [track]="track" (toggleFavorite)="onToggleFavorite($event)" />
+    } @empty {
+      <p class="favorites__empty">Tu n'as pas encore de favoris. Ajoutes-en depuis le catalogue !</p>
+    }
+  </div>
+
+</div>

@@ -6,11 +6,13 @@
   (click)="onSelect()"
 >
 
-  <img
-    class="track-card__cover"
-    [src]="track().coverUrl"
-    [alt]="track().title"
-  />
+  <div class="track-card__cover-wrap">
+    <img
+      class="track-card__cover"
+      [src]="track().coverUrl"
+      [alt]="track().title"
+    />
+  </div>
 
   <div class="track-card__body">
     <h3 class="track-card__title">{{ track().title }}</h3>
@@ -21,9 +23,14 @@
     </p>
 
     <div class="track-card__tags">
-      @if (track().favorite) {
-        <span class="track-card__tag track-card__tag--favorite">❤ Favori</span>
-      }
+      <button
+        type="button"
+        class="track-card__tag track-card__tag--favorite"
+        [class.track-card__tag--favorite-active]="track().favorite"
+        (click)="onToggleFavorite($event)"
+        [attr.aria-label]="track().favorite ? 'Retirer des favoris' : 'Ajouter aux favoris'"
+        [attr.aria-pressed]="track().favorite"
+      >{{ track().favorite ? '❤ Favori' : '♡ Favori' }}</button>
 
       @switch (true) {
         @case (track().rating >= 9) {
