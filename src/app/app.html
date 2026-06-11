@@ -14,7 +14,7 @@
       <span class="header__status">● En ligne</span>
       <button type="button" class="header__logout" (click)="auth.logout()">Se déconnecter</button>
     } @else {
-      <a routerLink="/login" routerLinkActive="active">Se connecter</a>
+      <a routerLink="/login" routerLinkActive="active" class="header__login-btn">Se connecter</a>
     }
   </div>
 </header>

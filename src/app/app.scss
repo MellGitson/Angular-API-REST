@@ -48,16 +48,20 @@
       text-decoration: none;
       border-radius: var(--r-sm);
       transition: color var(--t-fast) var(--ease-out),
-                  background var(--t-fast) var(--ease-out);
+                  background var(--t-fast) var(--ease-out),
+                  text-shadow var(--t-fast) var(--ease-out);
 
       &:hover {
         color: var(--ink);
         background: var(--surface);
+        text-shadow: 0 0 8px oklch(0.55 0.180 200 / 0.70),
+                     0 0 18px oklch(0.55 0.180 200 / 0.35);
       }
 
       &.active {
         color: var(--ink);
         background: var(--surface);
+        text-shadow: 0 0 6px oklch(0.55 0.180 200 / 0.50);
 
         &::after {
           content: '';
@@ -68,6 +72,7 @@
           height: 2px;
           background: var(--primary);
           border-radius: var(--r-full) var(--r-full) 0 0;
+          box-shadow: 0 0 6px var(--primary), 0 0 12px oklch(0.55 0.180 200 / 0.50);
         }
       }
     }
@@ -78,15 +83,36 @@
     align-items: center;
     gap: var(--sp-3);
     margin-left: auto;
+  }
 
-    a {
-      font-size: 0.85rem;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color var(--t-fast);
+  &__login-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--sp-2) var(--sp-5);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    color: var(--primary);
+    text-decoration: none;
+    border: 1px solid oklch(0.55 0.180 200 / 0.50);
+    border-radius: var(--r-full);
+    background: oklch(0.55 0.180 200 / 0.07);
+    letter-spacing: 0.02em;
+    transition: all var(--t-fast) var(--ease-out);
 
-      &:hover { color: var(--primary-hover); }
+    &:hover {
+      color: oklch(0.92 0.060 200);
+      background: oklch(0.55 0.180 200 / 0.15);
+      border-color: oklch(0.63 0.185 200 / 0.80);
+      box-shadow: 0 0 10px oklch(0.55 0.180 200 / 0.35),
+                  0 0 24px oklch(0.55 0.180 200 / 0.18),
+                  inset 0 0 8px oklch(0.55 0.180 200 / 0.06);
+      text-shadow: 0 0 8px oklch(0.55 0.180 200 / 0.80);
+    }
+
+    &.active {
+      color: var(--primary-hover);
+      border-color: oklch(0.63 0.185 200 / 0.60);
     }
   }
 
@@ -123,9 +149,12 @@
     letter-spacing: 0.01em;
 
     &:hover {
-      border-color: var(--danger);
+      border-color: oklch(0.60 0.200 25 / 0.80);
       color: var(--danger);
       background: oklch(0.58 0.190 25 / 0.08);
+      box-shadow: 0 0 8px oklch(0.60 0.200 25 / 0.30),
+                  0 0 18px oklch(0.60 0.200 25 / 0.12);
+      text-shadow: 0 0 6px oklch(0.60 0.200 25 / 0.60);
     }
   }
 }

@@ -41,7 +41,9 @@
     &:focus {
       border-color: var(--primary);
       background: var(--surface2);
-      box-shadow: var(--shadow-primary);
+      box-shadow: var(--shadow-primary),
+                  0 0 16px oklch(0.55 0.180 200 / 0.25),
+                  0 0 36px oklch(0.55 0.180 200 / 0.10);
     }
   }
 

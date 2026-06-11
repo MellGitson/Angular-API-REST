@@ -40,9 +40,12 @@
     transition: all var(--t-fast) var(--ease-out);
 
     &:hover {
-      border-color: var(--danger);
+      border-color: oklch(0.60 0.200 25 / 0.80);
       color: var(--danger);
       background: oklch(0.58 0.190 25 / 0.08);
+      box-shadow: 0 0 8px oklch(0.60 0.200 25 / 0.30),
+                  0 0 18px oklch(0.60 0.200 25 / 0.12);
+      text-shadow: 0 0 6px oklch(0.60 0.200 25 / 0.60);
     }
   }
 

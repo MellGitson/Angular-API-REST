@@ -30,8 +30,11 @@
 
     &:hover {
       color: var(--ink);
-      border-color: var(--primary);
+      border-color: oklch(0.63 0.185 200 / 0.80);
       background: oklch(0.55 0.180 200 / 0.08);
+      box-shadow: 0 0 10px oklch(0.55 0.180 200 / 0.30),
+                  0 0 22px oklch(0.55 0.180 200 / 0.12);
+      text-shadow: 0 0 8px oklch(0.55 0.180 200 / 0.60);
     }
   }
 
@@ -143,7 +146,9 @@
 
     &:hover {
       background: var(--surface2);
-      border-color: oklch(0.55 0.180 200 / 0.45);
+      border-color: oklch(0.55 0.180 200 / 0.60);
+      box-shadow: 0 0 12px oklch(0.55 0.180 200 / 0.18),
+                  0 0 28px oklch(0.55 0.180 200 / 0.08);
     }
   }
 
